@@ -1,15 +1,19 @@
 mod dedupe;
 
-trait HeadPlugin {
-    
+pub use dedupe::*;
+
+use crate::schema::HeadTag;
+
+pub trait HeadPlugin: HeadHook {
+    fn key(&self) -> &'static str;
 }
 
-trait HeadHook {
-    fn tag_normalise() {
-
+pub trait HeadHook {
+    fn tag_normalise(&self, tag: &mut HeadTag) {
+        let _ = tag;
     }
 
-    fn tags_resolve() {
-
+    fn tags_resolve(&self, tags: &mut Vec<HeadTag>) {
+        let _ = tags;
     }
 }
