@@ -2,7 +2,7 @@
 
 [Unhead](https://github.com/unjs/unhead) for Rust.
 
-Web Application Keyboard Navigation Tools.
+Unhead is the any-framework document head manager built for performance and delightful developer experience.
 
 ## Resources
 

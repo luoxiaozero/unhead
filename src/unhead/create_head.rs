@@ -2,12 +2,12 @@ use crate::schema::HeadTag;
 
 use super::plugins::{DedupePlugin, HeadPlugin};
 
-pub struct Unhead<T> {
-    entries: Vec<HeadEntry<T>>,
+pub struct Unhead {
+    entries: Vec<HeadEntry>,
     plugins: Vec<Box<dyn HeadPlugin>>,
 }
 
-impl<T> Unhead<T> {
+impl Unhead {
     pub fn new() -> Self {
         let head = Self::new_core();
 
@@ -34,7 +34,7 @@ impl<T> Unhead<T> {
         self.plugins.push(Box::new(p));
     }
 
-    pub fn push(&mut self, input: T) {
+    pub fn push(&mut self, input: Vec<HeadTag>) {
         let entry = HeadEntry { input };
 
         self.entries.push(entry);
@@ -52,6 +52,10 @@ impl<T> Unhead<T> {
     }
 }
 
-struct HeadEntry<Input> {
-    input: Input,
+struct HeadEntry {
+    input: Vec<HeadTag>,
+}
+
+pub trait IntoHeadTag {
+    fn into_head_tag(self) -> HeadTag;
 }

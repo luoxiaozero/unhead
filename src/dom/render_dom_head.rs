@@ -4,7 +4,7 @@ use crate::{
     Unhead,
 };
 
-pub async fn render_dom_head<T>(head: Unhead<T>) -> Result<(), ()> {
+pub async fn render_dom_head(head: Unhead) -> Result<(), ()> {
     let tags = head.resolve_tags().into_iter().map(|tag| {
         let id = if HAS_ELEMENT_TAGS.contains(&tag.tag.as_str()) {
             hash_tag(&tag)

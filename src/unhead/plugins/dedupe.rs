@@ -14,7 +14,8 @@ impl HeadHook for DedupePlugin {
         }
 
         if let Some(generated_key) = tag_dedupe_key(tag) {
-            if !generated_key.starts_with("meta:og:") && !generated_key.starts_with("meta:twitter:") {
+            if !generated_key.starts_with("meta:og:") && !generated_key.starts_with("meta:twitter:")
+            {
                 tag.key = None;
             }
         }
