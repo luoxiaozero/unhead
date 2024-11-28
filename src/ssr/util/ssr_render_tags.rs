@@ -1,6 +1,6 @@
-use std::collections::HashMap;
 use super::{props_to_string, tag_to_string};
 use crate::schema::{HeadTag, SSRHeadPayload, TagPosition};
+use std::collections::HashMap;
 
 pub fn ssr_render_tags(tags: Vec<HeadTag>) -> SSRHeadPayload {
     let mut head_tags = String::new();
@@ -13,10 +13,10 @@ pub fn ssr_render_tags(tags: Vec<HeadTag>) -> SSRHeadPayload {
     let line_breaks = '\n';
 
     for tag in tags.into_iter() {
-          // avoid rendering empty tags
-        //   if (Object.keys(tag.props).length === 0 && !tag.innerHTML && !tag.textContent) {
-        //     continue
-        //   }
+        // avoid rendering empty tags
+        if tag.props.is_empty() && tag.inner_html.is_none() && tag.text_content.is_none() {
+            continue;
+        }
         //   if (tag.tag === 'htmlAttrs' || tag.tag === 'bodyAttrs') {
         //     Object.assign(schema[tag.tag], tag.props)
         //     continue
@@ -31,14 +31,14 @@ pub fn ssr_render_tags(tags: Vec<HeadTag>) -> SSRHeadPayload {
                     head_tags += &s;
                 }
             }
-            TagPosition::BodyClose =>  {
+            TagPosition::BodyClose => {
                 if body_tags_close.is_empty() {
                     body_tags_close += &format!("{line_breaks}{s}");
                 } else {
                     body_tags_close += &s;
                 }
             }
-            TagPosition::BodyOpen =>  {
+            TagPosition::BodyOpen => {
                 if body_tags_open.is_empty() {
                     body_tags_open += &format!("{line_breaks}{s}");
                 } else {

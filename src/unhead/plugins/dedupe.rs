@@ -9,10 +9,6 @@ pub struct DedupePlugin;
 
 impl HeadHook for DedupePlugin {
     fn tag_normalise(&self, tag: &mut HeadTag) {
-        if tag.props.contains_key("key") {
-            tag.key = tag.props.remove("key");
-        }
-
         if let Some(generated_key) = tag_dedupe_key(tag) {
             if !generated_key.starts_with("meta:og:") && !generated_key.starts_with("meta:twitter:")
             {

@@ -44,7 +44,9 @@ impl Unhead {
         let mut tags: Vec<HeadTag> = vec![];
         let entries = &self.entries;
 
-        // self.entries.iter().for_each(|entry| );
+        entries.iter().for_each(|entry| {
+            tags.append(&mut entry.input.clone());
+        });
 
         self.plugins.iter().for_each(|p| p.tags_resolve(&mut tags));
 
@@ -54,8 +56,4 @@ impl Unhead {
 
 struct HeadEntry {
     input: Vec<HeadTag>,
-}
-
-pub trait IntoHeadTag {
-    fn into_head_tag(self) -> HeadTag;
 }
