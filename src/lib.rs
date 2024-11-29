@@ -7,3 +7,4 @@ mod unhead;
 pub use dom::*;
 pub use ssr::*;
 pub use unhead::*;
+pub use schema::*;

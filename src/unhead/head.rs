@@ -1,4 +1,4 @@
-use crate::schema::{HeadTag, TagKey, TagPosition};
+use crate::schema::{HeadTag, TagKey, TagPosition, TagPriority};
 use std::{collections::HashMap, string::ToString};
 
 macro_rules! head_elements {
@@ -22,6 +22,7 @@ macro_rules! head_elements {
                         text_content: Option<String>,
                         inner_html: Option<String>,
                         tag_position: Option<TagPosition>,
+                        tag_priority: Option<TagPriority>
                     }
 
                     impl $ty {
@@ -72,7 +73,10 @@ macro_rules! head_elements {
                                 key: self.key,
                                 text_content: self.text_content,
                                 inner_html: self.inner_html,
-                                tag_position: self.tag_position
+                                tag_position: self.tag_position,
+                                tag_priority: self.tag_priority,
+                                d: None,
+                                p: None,
                             }
                         }
                     }

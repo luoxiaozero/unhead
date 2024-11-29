@@ -25,11 +25,22 @@ impl TagKey {
     }
 }
 
+/// Specify where to render the tag.
 #[derive(Debug, Clone)]
 pub enum TagPosition {
     Head,
     BodyClose,
     BodyOpen,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum TagPriority {
+    Critical,
+    High,
+    Low,
+    Number(i32),
+    Before(String),
+    After(String),
 }
 
 #[derive(Debug, Clone)]
@@ -40,4 +51,10 @@ pub struct HeadTag {
     pub inner_html: Option<String>,
     pub text_content: Option<String>,
     pub tag_position: Option<TagPosition>,
+    pub tag_priority: Option<TagPriority>,
+
+    /// Position
+    pub(crate) p: Option<i32>,
+    /// Dedupe key
+    pub(crate) d: Option<String>,
 }

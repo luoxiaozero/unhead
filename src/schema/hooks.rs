@@ -1,6 +1,6 @@
 use super::HeadTag;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct SSRHeadPayload {
     pub head_tags: String,
     pub body_tags: String,

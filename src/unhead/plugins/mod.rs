@@ -1,11 +1,22 @@
 mod dedupe;
+mod sort;
 
 pub use dedupe::*;
+pub use sort::*;
 
 use crate::schema::HeadTag;
 
+pub enum RuntimeMode {
+    Server,
+    Client,
+}
+
 pub trait HeadPlugin: HeadHook {
     fn key(&self) -> &'static str;
+
+    fn mode(&self) -> Option<RuntimeMode> {
+        None
+    }
 }
 
 pub trait HeadHook {

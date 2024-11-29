@@ -1,6 +1,6 @@
 use crate::schema::HeadTag;
 
-use super::plugins::{DedupePlugin, HeadPlugin};
+use super::plugins::{DedupePlugin, HeadPlugin, SortPlugin};
 
 pub struct Unhead {
     entries: Vec<HeadEntry>,
@@ -22,6 +22,7 @@ impl Unhead {
         };
 
         head.plugin(DedupePlugin);
+        head.plugin(SortPlugin);
 
         head
     }

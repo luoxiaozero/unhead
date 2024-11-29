@@ -7,6 +7,12 @@ use std::collections::HashMap;
 
 pub struct DedupePlugin;
 
+impl HeadPlugin for DedupePlugin {
+    fn key(&self) -> &'static str {
+        "dedupe"
+    }
+}
+
 impl HeadHook for DedupePlugin {
     fn tag_normalise(&self, tag: &mut HeadTag) {
         if let Some(generated_key) = tag_dedupe_key(tag) {
@@ -64,11 +70,5 @@ impl HeadHook for DedupePlugin {
                     && !t.props.contains_key("content"))
             })
             .collect();
-    }
-}
-
-impl HeadPlugin for DedupePlugin {
-    fn key(&self) -> &'static str {
-        "dedupe"
     }
 }
