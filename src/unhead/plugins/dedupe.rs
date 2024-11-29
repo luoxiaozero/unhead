@@ -3,7 +3,7 @@ use crate::{
     schema::{HeadTag, TagKey},
     shared::{hash_tag, tag_dedupe_key},
 };
-use std::collections::HashMap;
+use indexmap::IndexMap;
 
 pub struct DedupePlugin;
 
@@ -24,7 +24,7 @@ impl HeadHook for DedupePlugin {
     }
 
     fn tags_resolve(&self, tags: &mut Vec<HeadTag>) {
-        let mut deduping = HashMap::<String, HeadTag>::new();
+        let mut deduping = IndexMap::<String, HeadTag>::new();
 
         tags.drain(..).into_iter().for_each(|mut tag| {
             let dedupe_key = if let Some(key) = &tag.key {

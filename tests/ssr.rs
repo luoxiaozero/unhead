@@ -18,7 +18,7 @@ fn head() {
     let result = render_ssr_head(head);
 
     assert_eq!(result, SSRHeadPayload {
-        head_tags: "\n<meta charset=\"utf-8\"><base target=\"_blank\"><title>unhead</title><style id=\"id\">body { background: #fff }</style><link href=\"link\">".to_string(),
+        head_tags: "\n<meta charset=\"utf-8\"><base target=\"_blank\"><title>unhead</title><link href=\"link\"><style id=\"id\">body { background: #fff }</style>".to_string(),
         body_tags: "".to_string(),
         body_tags_open: "".to_string(),
         html_attrs: "".to_string(),
