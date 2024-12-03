@@ -1,8 +1,2 @@
-[package]
-name = "unhead"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-paste = "1.0"
-indexmap = "2.6.0"
+[workspace]
+members = ["unhead"]
